@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://dadcahbv4jvyd"]
+
+[ext_resource type="Texture2D" uid="uid://c8sa2vnpwt8nt" path="res://Muñecos/Vendedor/vendor-idle.png" id="1_swlp3"]
+[ext_resource type="Script" uid="uid://dcui3pj8wsc5l" path="res://script/npc_vendedor.gd" id="1_xakkf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xakkf"]
+atlas = ExtResource("1_swlp3")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjq7b"]
+atlas = ExtResource("1_swlp3")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k8bp"]
+atlas = ExtResource("1_swlp3")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4jui"]
+atlas = ExtResource("1_swlp3")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjauw"]
+atlas = ExtResource("1_swlp3")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylhn7"]
+atlas = ExtResource("1_swlp3")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ir1w"]
+atlas = ExtResource("1_swlp3")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d28o"]
+atlas = ExtResource("1_swlp3")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xstco"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xakkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjq7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k8bp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4jui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjauw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylhn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ir1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d28o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vsm3t"]
+radius = 21.0
+height = 76.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twc5g"]
+size = Vector2(28.5, 30)
+
+[node name="NPCvendedor" type="CharacterBody2D"]
+script = ExtResource("1_xakkf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(115, 73.5)
+scale = Vector2(1.4375, 1.28906)
+sprite_frames = SubResource("SpriteFrames_xstco")
+animation = &"idle"
+frame_progress = 0.820813
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(112, 68)
+shape = SubResource("CapsuleShape2D_vsm3t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(127.75, 93)
+shape = SubResource("RectangleShape2D_twc5g")

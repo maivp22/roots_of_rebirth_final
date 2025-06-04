@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://brnlr25ni7hin"]
+
+[ext_resource type="Script" uid="uid://dtru1hqdyp8sa" path="res://script/mainmenu.gd" id="1_v4pkt"]
+[ext_resource type="PackedScene" uid="uid://bikccwx8htjbn" path="res://gui/pixel_panel.tscn" id="2_lah54"]
+[ext_resource type="PackedScene" uid="uid://dvmd56nulfo8d" path="res://gui/pixe_button.tscn" id="3_5326e"]
+[ext_resource type="Texture2D" uid="uid://drbq8vajmmlck" path="res://ui/WhatsApp Image 2025-05-28 at 2.06.40 PM.jpeg" id="3_v4pkt"]
+[ext_resource type="Texture2D" uid="uid://bvnluvblbuqm5" path="res://ui/conf.png" id="5_5326e"]
+
+[sub_resource type="Theme" id="Theme_5326e"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_v4pkt")
+
+[node name="Panel" parent="." instance=ExtResource("2_lah54")]
+layout_direction = 4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_v4pkt")
+expand_mode = 3
+
+[node name="Button_continue" parent="." instance=ExtResource("3_5326e")]
+offset_left = 401.0
+offset_top = 504.0
+offset_right = 739.0
+offset_bottom = 569.0
+text = ""
+flat = true
+
+[node name="Button_exit" parent="." instance=ExtResource("3_5326e")]
+offset_left = 403.0
+offset_top = 585.0
+offset_right = 737.0
+offset_bottom = 645.0
+text = ""
+flat = true
+
+[node name="Button_start" parent="." instance=ExtResource("3_5326e")]
+offset_left = 407.0
+offset_top = 429.0
+offset_right = 741.0
+offset_bottom = 491.0
+text = ""
+flat = true
+
+[node name="Button_Options" type="Button" parent="."]
+offset_left = -6.0
+offset_top = 568.0
+offset_right = 89.0
+offset_bottom = 656.0
+theme = SubResource("Theme_5326e")
+icon = ExtResource("5_5326e")
+flat = true

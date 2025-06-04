@@ -1,0 +1,445 @@
+[gd_scene load_steps=16 format=3 uid="uid://clv2ypmwpd6fb"]
+
+[ext_resource type="Script" uid="uid://dexdax6qfnipy" path="res://script/settings_tab_container.gd" id="1_vry2l"]
+[ext_resource type="Texture2D" uid="uid://bkifswbkk7ds2" path="res://ui/jeje.png" id="2_nkcdg"]
+[ext_resource type="Texture2D" uid="uid://rfjwjhs84j20" path="res://ui/atras.png" id="3_2t5n7"]
+
+[sub_resource type="Theme" id="Theme_au2j8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2t5n7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2xdsb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_58ikg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b5o0w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2e0py"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_um3q1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bosci"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_halo2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xek4n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqtx0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_japu0"]
+
+[node name="Settings_Tab_Container" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 146.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_au2j8")
+script = ExtResource("1_vry2l")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -235.0
+offset_right = 80.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nkcdg")
+expand_mode = 5
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 121.0
+offset_top = -8.0
+offset_right = -113.0
+offset_bottom = -147.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 5
+
+[node name="Sonido" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sonido"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sonido/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Gráficos" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Gráficos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Gráficos/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Accesibilidad" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Accesibilidad"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Accesibilidad/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Idioma" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Idioma"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Idioma/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Controles" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controles"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controles/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Manual de Usuario" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Manual de Usuario"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Manual de Usuario/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Manual de Usuario/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "
+📘 Manual de Usuario: Roots of Rebirth
+
+🌿 Introducción
+Bienvenido a Roots of Rebirth, un juego educativo desarrollado por GaiaCore Studios para concientizar
+ sobre el cambio climático y la importancia de la restauración ecológica. A través de una aventura única, viajarás por mundos
+donde superarás desafíos, derrotarás enemigos y recolectarás piezas de una estatua ancestral para salvar la Tierra."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="TabContainer/Manual de Usuario/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🎮 Controles del Juego
+
+Moverse (izquierda/derecha) =  Flechas o A/D
+Atacar / Usar habilidad	Z
+Interactuar (con NPCs, objetos)	E o Click izquierdo
+Acceder al Inventario	I
+Pausar juego = ESC
+Pausar/detener música = P
+Seleccionar skin inicial = Flechas
+Continuar historia = Barra espaciadora / Enter
+Seleccionar Skin = Barra espaciadora / Enter
+"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="TabContainer/Manual de Usuario/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🌎 Objetivo del Juego
+Tu misión es restaurar el planeta que fue destruído por la contaminación completando misiones
+en cuatro mundos temáticos. Cada mundo representa un ecosistema diferente representado por los frutos de sus acciones,
+unos verdes y fronduosos, y otros grises y tristes. 
+
+Deberás:
+Recolectar armas e ítems.
+Derrotar enemigos.
+Completar misiones ecológicas.
+Obtener las piezas de la estatua ancestral.
+Derrotar al jefe final.
+
+Cuando completes todas las misiones y reconstruyas la estatua, restaurarás la Tierra y salvarás al mundo.
+"
+horizontal_alignment = 1
+
+[node name="Créditos" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Créditos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Créditos/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="FAQ - Contacto" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 7
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/FAQ - Contacto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/FAQ - Contacto/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Preguntas Frecuentes (FAQ)
+"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🟢 ¿Qué hago si el juego se cierra solo o tengo errores?"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Por favor, reinicia el juego. Si el problema persiste, contáctanos por correo.
+"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🟢 ¿Necesito una computadora potente para jugar?"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "No, el juego está optimizado para correr en la mayoría de los dispositivos.
+"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🟢 ¿Puedo jugar sin conexión?"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Sí. Una vez descargado, puedes jugar sin necesidad de internet.
+"
+horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🟢 ¿Habrá más actualizaciones en el futuro?"
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "¡Sí! Planeamos añadir nuevos niveles y biomas en las próximas versiones.
+"
+horizontal_alignment = 1
+
+[node name="Label11" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🟢 ¿Cómo se desbloquea el nivel final?"
+horizontal_alignment = 1
+
+[node name="Label12" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Avanza en la historia y completa los desafíos de cada mundo para desbloquearlo.
+"
+horizontal_alignment = 1
+
+[node name="Label13" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🟢 ¿Qué significan los iconos en las esferas?"
+horizontal_alignment = 1
+
+[node name="Label14" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Cada esfera representa un portal a un mundo con una misión única:
+🌿 Verde: Renacer de la Naturaleza
+⚔️ Morado: Prueba de Valentía
+👁️ Rojo: La Lucha Final
+"
+horizontal_alignment = 1
+
+[node name="Label15" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "🟢 ¿Puedo reiniciar el juego desde cero?"
+horizontal_alignment = 1
+
+[node name="Label17" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Sí. Desde el menú principal, selecciona 'Nueva Partida' para empezar desde el principio.
+"
+horizontal_alignment = 1
+
+[node name="Label16" type="Label" parent="TabContainer/FAQ - Contacto/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "📩 Contacto
+Si necesitas soporte técnico o tienes sugerencias:
+
+✉️ Email: gaiacore.studios@gmail.com
+🌐 Web: www.gaiacoregames.com  
+📱 Instagram: @gaiacore.games
+"
+horizontal_alignment = 1
+
+[node name="Exit_Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.315
+anchor_top = 0.069
+anchor_right = 0.315
+anchor_bottom = 0.069
+offset_left = -339.88
+offset_top = -145.158
+offset_right = -195.88
+offset_bottom = 8.842
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.108918
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2t5n7")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2xdsb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_58ikg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_b5o0w")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_2e0py")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_um3q1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bosci")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_halo2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xek4n")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_eqtx0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_japu0")
+flat = true
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="Exit_Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.48003
+offset_top = -32.5713
+offset_right = -47.48
+offset_bottom = -68.5713
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.112767
+texture = ExtResource("3_2t5n7")
+flip_h = true

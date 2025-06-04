@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvmd56nulfo8d"]
+
+[ext_resource type="Texture2D" uid="uid://bd0ax8e1116vk" path="res://Selector/Hover.png" id="1_eay8b"]
+[ext_resource type="FontFile" uid="uid://boqb58gh4foy4" path="res://Selector/wayfarers-toy-box.ttf" id="1_qekep"]
+[ext_resource type="Texture2D" uid="uid://b8vtx5vnps0hm" path="res://Selector/Default@2x-1.png" id="3_7slbk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkq16"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kt7s3"]
+texture = ExtResource("3_7slbk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fsbdh"]
+texture = ExtResource("1_eay8b")
+
+[node name="Button" type="Button"]
+offset_left = 520.0
+offset_top = 432.0
+offset_right = 664.0
+offset_bottom = 552.0
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("1_qekep")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxTexture_vkq16")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kt7s3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fsbdh")
+text = "btn"

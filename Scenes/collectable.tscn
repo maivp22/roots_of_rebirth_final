@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuw320j6i8hvm"]
+
+[ext_resource type="Script" uid="uid://c0upf3sthps24" path="res://itemScript/collectable.gd" id="1_3rsma"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_048fi"]
+resource_local_to_scene = true
+size = Vector2(23, 23)
+
+[node name="Collectable" type="Area2D"]
+script = ExtResource("1_3rsma")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 8
+visibility_layer = 0
+shape = SubResource("RectangleShape2D_048fi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)

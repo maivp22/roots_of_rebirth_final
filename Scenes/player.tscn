@@ -1,0 +1,550 @@
+[gd_scene load_steps=45 format=3 uid="uid://dadalw62vr8ce"]
+
+[ext_resource type="Resource" uid="uid://d1qg25pj82cdx" path="res://inventory/playerInventory.tres" id="1_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://dm0cefhg5de1x" path="res://Player/char_a_p4_0bas_humn_v00.png" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://6d2kpcrci1hq" path="res://Player/char_a_p1_0bas_humn_v00.png" id="3_sweqy"]
+
+[sub_resource type="GDScript" id="GDScript_onrkg"]
+script/source = "extends CharacterBody2D
+
+signal healthChanged
+
+const speed = 120
+var current_dir = \"none\"
+
+@onready var effects = $Effects
+@onready var hurtTimer = $hurtTimer
+@onready var hurtBox = $hurtBox
+@export var maxHealth = 3
+@onready var currentHealth: int = maxHealth
+
+@export var knockbackPower: int = 1500
+
+@export var inventory: Inventory
+
+var isHurt: bool = false
+
+func _ready():
+	effects.play(\"RESET\")
+	var skin_index = GameData.selected_skin_index
+	var skin_path = GameData.skin_paths[skin_index]
+	var frames = load(skin_path)
+	$AnimatedSprite2D.frames = frames
+	$AnimatedSprite2D.play(\"front_idle\")
+
+func _physics_process(delta):
+	if get_tree().paused:
+		return  # Si el juego está pausado, no hacer nada
+	
+	player_movement(delta)
+	if !isHurt:
+		for area in hurtBox.get_overlapping_areas():
+			if area.name == \"hitBox\":
+				hurtByEnemy(area)
+
+func hurtByEnemy(area):
+	currentHealth -= 1
+	if currentHealth < 0:
+		currentHealth = maxHealth
+
+	healthChanged.emit(currentHealth)
+	isHurt = true
+	
+	knockback(area.get_parent().velocity)
+	effects.play(\"hurtBlink\")
+	hurtTimer.start()
+	await hurtTimer.timeout
+	effects.play(\"RESET\")
+	isHurt = false
+
+func player_movement(delta):
+	
+	if Input.is_action_pressed(\"ui_right\"):
+		current_dir = \"right\"
+		play_anim(1)
+		velocity.x = speed
+		velocity.y = 0
+	
+	elif Input.is_action_pressed(\"ui_left\"):
+		current_dir = \"left\"
+		play_anim(1)
+		velocity.x = -speed
+		velocity.y = 0
+	
+	elif Input.is_action_pressed(\"ui_down\"):
+		current_dir = \"down\"
+		play_anim(1)
+		velocity.y = speed
+		velocity.x = 0
+	
+	elif Input.is_action_pressed(\"ui_up\"):
+		current_dir = \"up\"
+		play_anim(1)
+		velocity.y = -speed
+		velocity.x = 0
+	else:
+		play_anim(0)
+		velocity.x = 0
+		velocity.y = 0
+	
+	move_and_slide()
+	
+
+func play_anim(movement):
+	var dir = current_dir
+	var anim = $AnimatedSprite2D
+	
+	if dir == \"right\":
+		anim.flip_h = false
+		if movement == 1:
+			anim.play(\"right_walk\")
+		elif movement == 0:
+			anim.play(\"right_idle\")
+	if dir == \"left\":
+		anim.flip_h = false
+		if movement == 1:
+			anim.play(\"left_walk\")
+		elif movement == 0:
+			anim.play(\"left_idle\")
+			
+	
+	if dir == \"up\":
+		anim.flip_h = true
+		if movement == 1:
+			anim.play(\"back_walk\")
+		elif movement == 0:
+			anim.play(\"back_idle\")
+	if dir == \"down\":
+		anim.flip_h = true
+		if movement == 1:
+			anim.play(\"front_walk\")
+		elif movement == 0:
+			anim.play(\"front_idle\")
+
+func get_direction():
+	return current_dir
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	if area.has_method(\"collect\"):
+		area.collect(inventory)
+
+
+func knockback(enemyVelocity: Vector2):
+	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	velocity = knockbackDirection
+	move_and_slide()
+
+func _on_hurt_box_area_exited(area: Area2D) -> void: pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syoou"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6nf7"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga1dr"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28328"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww8dr"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vap8u"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix6s6"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(256, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjh2y"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(320, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4v6s"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upndt"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fr1s"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymlad"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br8re"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr8ca"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(192, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grb2e"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(256, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmib8"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(320, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m00p"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heyrv"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dobvc"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbyns"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkard"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w22aw"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(192, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0rxl"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruag8"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(64, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(128, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyhao"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(0, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rnmb"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(64, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8dw5"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(128, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob4gc"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(192, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3a1d"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(256, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kod07"]
+atlas = ExtResource("3_sweqy")
+region = Rect2(320, 384, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6nf7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syoou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6nf7")
+}],
+"loop": true,
+"name": &"back_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga1dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28328")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww8dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vap8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix6s6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjh2y")
+}],
+"loop": true,
+"name": &"back_walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4v6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upndt")
+}],
+"loop": true,
+"name": &"front_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fr1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymlad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br8re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hr8ca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grb2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmib8")
+}],
+"loop": true,
+"name": &"front_walk",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m00p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heyrv")
+}],
+"loop": true,
+"name": &"left_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dobvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbyns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkard")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w22aw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0rxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruag8")
+}],
+"loop": true,
+"name": &"left_walk",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}],
+"loop": true,
+"name": &"right_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyhao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rnmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8dw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob4gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3a1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kod07")
+}],
+"loop": true,
+"name": &"right_walk",
+"speed": 9.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(13, 19)
+
+[sub_resource type="GDScript" id="GDScript_vgqql"]
+script/source = "extends Camera2D
+
+# cuánto queremos acercar; valores menores = más cerca, mayores = más lejos
+@export var target_zoom: Vector2 = Vector2(2.5, 2.5)
+# velocidad de suavizado (pon 0 para cambio instantáneo)
+@export var smooth_speed: float = 5.0
+
+var _current_zoom: Vector2
+
+func _ready():
+	make_current()            # convierte esta cámara en la activa
+	_current_zoom = zoom      # guardamos el zoom inicial
+
+func _process(delta):
+	if smooth_speed > 0:
+		_current_zoom = _current_zoom.lerp(target_zoom, smooth_speed * delta)
+		zoom = _current_zoom
+	else:
+		zoom = target_zoom
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqql"]
+size = Vector2(18, 39)
+
+[sub_resource type="GDScript" id="GDScript_6t5aa"]
+
+[sub_resource type="Animation" id="Animation_fkybt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.956863, 0.156863, 0.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vgqql"]
+resource_name = "hurtBlink"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.956863, 0.156863, 0.2, 0.792157), Color(1, 0.984314, 0.980392, 0.588235)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x3wgy"]
+_data = {
+&"RESET": SubResource("Animation_fkybt"),
+&"hurtBlink": SubResource("Animation_vgqql")
+}
+
+[node name="player" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
+up_direction = Vector2(0, 1)
+script = SubResource("GDScript_onrkg")
+inventory = ExtResource("1_6t5aa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+clip_children = 2
+z_index = -1
+position = Vector2(6.77626e-21, 0)
+scale = Vector2(1.39063, 1.32813)
+sprite_frames = SubResource("SpriteFrames_f6nf7")
+animation = &"right_walk"
+frame_progress = 0.0895953
+
+[node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
+offset_left = -15.1011
+offset_top = -20.3293
+offset_right = 24.8989
+offset_bottom = 19.6707
+color = Color(0.956863, 0.156863, 0.2, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_speed = 20.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_vertical_offset = 0.09
+drag_left_margin = 0.21
+drag_top_margin = 0.16
+drag_right_margin = 0.19
+drag_bottom_margin = 0.13
+editor_draw_screen = false
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = SubResource("GDScript_vgqql")
+
+[node name="hurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
+visibility_layer = 3
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_vgqql")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = SubResource("GDScript_6t5aa")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/InventoryUI"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Effects" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x3wgy")
+}
+
+[node name="hurtTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="hurtBox" to="." method="_on_hurt_box_area_exited"]

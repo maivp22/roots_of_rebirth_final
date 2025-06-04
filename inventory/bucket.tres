@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://b04iuflak1npb"]
+
+[ext_resource type="Script" uid="uid://brea4m34wdj3b" path="res://script/inventoryItem.gd" id="1_ymh5a"]
+[ext_resource type="Texture2D" uid="uid://dh58d45owyuiq" path="res://items/bucket.png" id="2_4tfpt"]
+
+[resource]
+script = ExtResource("1_ymh5a")
+name = "bucjet"
+texture = ExtResource("2_4tfpt")
+metadata/_custom_type_script = "uid://brea4m34wdj3b"

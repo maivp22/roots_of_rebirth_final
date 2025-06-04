@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkm30psuen8pe"]
+
+[ext_resource type="Script" uid="uid://chr274qxqp8ng" path="res://script/spawn_enemy.gd" id="1_0ijro"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eriu"]
+
+[node name="spawn_enemy" type="Area2D"]
+script = ExtResource("1_0ijro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+shape = SubResource("RectangleShape2D_3eriu")
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 7.0
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]

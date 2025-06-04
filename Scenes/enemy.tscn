@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://crphrhnb30fkm"]
+
+[ext_resource type="Script" uid="uid://xavtrycldeb4" path="res://script/enemy.gd" id="1_3npdw"]
+[ext_resource type="SpriteFrames" uid="uid://b3r00rb3m7tx1" path="res://Enemy/Chomb3.tres" id="2_1f0kj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip24r"]
+size = Vector2(21, 21)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53bjk"]
+radius = 118.512
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
+size = Vector2(20, 24.5)
+
+[node name="enemy" type="CharacterBody2D"]
+process_mode = 1
+z_index = 1
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_3npdw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("2_1f0kj")
+animation = &"front_idle"
+frame_progress = 0.062153
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
+z_as_relative = false
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_ip24r")
+
+[node name="detection_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_53bjk")
+
+[node name="hitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(-1, -12)
+shape = SubResource("RectangleShape2D_1f0kj")
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

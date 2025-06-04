@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://cu67ddq7wjwqc"]
+
+[ext_resource type="Script" uid="uid://txpx1qm8e8y6" path="res://script/characterselector.gd" id="1_v00rt"]
+[ext_resource type="PackedScene" uid="uid://bikccwx8htjbn" path="res://gui/pixel_panel.tscn" id="2_v1r2r"]
+[ext_resource type="PackedScene" uid="uid://ccmsvdwdjlp6l" path="res://gui/pixe_label.tscn" id="3_326cw"]
+[ext_resource type="Texture2D" uid="uid://bir3atmtdqum" path="res://Cinematica/Nave2.png" id="3_v1r2r"]
+[ext_resource type="PackedScene" uid="uid://dvmd56nulfo8d" path="res://gui/pixe_button.tscn" id="4_udglq"]
+[ext_resource type="Texture2D" uid="uid://m7jd5fd70nqt" path="res://Player/Skin1.png" id="5_pvdbj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_326cw"]
+texture = ExtResource("3_v1r2r")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_v00rt")
+
+[node name="Panel" parent="." instance=ExtResource("2_v1r2r")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1237.57
+theme_override_styles/panel = SubResource("StyleBoxTexture_326cw")
+
+[node name="Label" parent="." instance=ExtResource("3_326cw")]
+offset_left = 336.0
+offset_right = 860.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 45
+text = "Select your
+character"
+horizontal_alignment = 1
+
+[node name="Button_Left" parent="." instance=ExtResource("4_udglq")]
+offset_left = 368.0
+offset_top = 384.0
+offset_right = 472.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 47
+text = "<"
+
+[node name="Button_Right" parent="." instance=ExtResource("4_udglq")]
+offset_left = 720.0
+offset_top = 384.0
+offset_right = 824.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 47
+text = ">"
+
+[node name="Button_Ok" parent="." instance=ExtResource("4_udglq")]
+offset_left = 544.0
+offset_top = 488.0
+offset_right = 640.0
+offset_bottom = 576.0
+text = "Ok"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(592, 408)
+scale = Vector2(6.25, 5.5)
+texture = ExtResource("5_pvdbj")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[connection signal="pressed" from="Button_Left" to="." method="_on_button_left_pressed"]
+[connection signal="pressed" from="Button_Right" to="." method="_on_button_right_pressed"]
+[connection signal="pressed" from="Button_Ok" to="." method="_on_button_ok_pressed"]

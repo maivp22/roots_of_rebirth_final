@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcafj5v0shrje"]
+
+[ext_resource type="PackedScene" uid="uid://cuw320j6i8hvm" path="res://Scenes/collectable.tscn" id="1_y4joh"]
+[ext_resource type="Texture2D" uid="uid://ttdmbfnowegi" path="res://items/spear.png" id="2_i4w2o"]
+[ext_resource type="Script" uid="uid://3rla8vslwcy1" path="res://itemScript/spear.gd" id="2_t4qxn"]
+[ext_resource type="Resource" uid="uid://ebreafvvajx" path="res://inventory/spear.tres" id="3_t4qxn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4qxn"]
+resource_local_to_scene = true
+size = Vector2(13, 54)
+
+[node name="spear" instance=ExtResource("1_y4joh")]
+script = ExtResource("2_t4qxn")
+itemRes = ExtResource("3_t4qxn")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_t4qxn")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, 0)
+rotation = 0.359538
+scale = Vector2(0.91996, 0.858863)
+texture = ExtResource("2_i4w2o")
