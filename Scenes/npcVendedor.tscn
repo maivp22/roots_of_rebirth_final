@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dadcahbv4jvyd"]
+[gd_scene load_steps=13 format=3 uid="uid://dadcahbv4jvyd"]
 
 [ext_resource type="Texture2D" uid="uid://c8sa2vnpwt8nt" path="res://Muñecos/Vendedor/vendor-idle.png" id="1_swlp3"]
 [ext_resource type="Script" uid="uid://dcui3pj8wsc5l" path="res://script/npc_vendedor.gd" id="1_xakkf"]
@@ -68,11 +68,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vsm3t"]
-radius = 21.0
+radius = 19.0
 height = 76.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_twc5g"]
-size = Vector2(28.5, 30)
 
 [node name="NPCvendedor" type="CharacterBody2D"]
 script = ExtResource("1_xakkf")
@@ -86,9 +83,5 @@ frame_progress = 0.820813
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(112, 68)
+position = Vector2(113, 69)
 shape = SubResource("CapsuleShape2D_vsm3t")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(127.75, 93)
-shape = SubResource("RectangleShape2D_twc5g")

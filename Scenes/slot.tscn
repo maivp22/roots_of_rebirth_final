@@ -3,40 +3,35 @@
 [ext_resource type="Script" uid="uid://bny1ig5qatd7s" path="res://script/slot.gd" id="1_12ej0"]
 [ext_resource type="Texture2D" uid="uid://cxwi4mf6stka3" path="res://ui/inventorySlot.png" id="1_luhj6"]
 
-[node name="Slot" type="Button"]
+[node name="Slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(40, 40)
-anchors_preset = -1
-anchor_left = 0.023
-anchor_top = 0.039
-anchor_right = 0.023
-anchor_bottom = 0.039
-offset_left = -26.496
-offset_top = -25.272
-offset_right = 23.504
-offset_bottom = 24.728
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
 script = ExtResource("1_12ej0")
 
 [node name="background" type="Sprite2D" parent="."]
-scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_luhj6")
 centered = false
 vframes = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(-5, -5)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.531
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.531
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -26.55
-offset_top = -25.0
-offset_right = 23.45
-offset_bottom = 25.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="item" type="Sprite2D" parent="CenterContainer"]
+position = Vector2(10, 10)

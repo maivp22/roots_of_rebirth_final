@@ -2,7 +2,7 @@ extends Node
 
 
 @onready var pause_menu = $CanvasLayer/PauseMenu
-@onready var inventoy_gui = $CanvasLayer/InventoryGui
+@onready var inventoy_gui = $CanvasLayer/InventoyGui
 
 func _ready():
 	pause_menu.visible = false

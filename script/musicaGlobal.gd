@@ -1,16 +1,28 @@
 extends Node
 
 @onready var music_player: AudioStreamPlayer = AudioStreamPlayer.new()
+var config = ConfigFile.new()
+var config_path = "user://settings.cfg"
+
 var is_paused = false
 var current_tween = null
+
+
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	music_player.stream = preload("res://musica/musica.mp3")
 	add_child(music_player)
-	music_player.volume_db = -30  # Empieza bajito
+	var err = config.load(config_path)
+	if err == OK:
+		var saved_volume = config.get_value("Audio", "volume", -30)
+		set_volume(saved_volume)
+   
 	music_player.play()
 	fade_in()
+	
+func set_volume(value_db):
+	music_player.volume_db = value_db
 
 func toggle_music():
 	is_paused = !is_paused

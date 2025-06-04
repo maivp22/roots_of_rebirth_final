@@ -4,6 +4,7 @@ extends "res://script/NivelBase.gd"
 @onready var player = $player
 
 func _ready() -> void:
+	Soundmanager.set_surface("mundo1")
 	MusicaGlobal.play_new_music("res://musica/mundoo.mp3")
 	heartsContainer.setMaxHearts(player.maxHealth)
 	heartsContainer.updateHearts(player.currentHealth)
