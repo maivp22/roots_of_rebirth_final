@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcafj5v0shrje"]
+[gd_scene load_steps=9 format=3 uid="uid://dcafj5v0shrje"]
 
 [ext_resource type="PackedScene" uid="uid://cuw320j6i8hvm" path="res://Scenes/collectable.tscn" id="1_y4joh"]
 [ext_resource type="Texture2D" uid="uid://ttdmbfnowegi" path="res://items/spear.png" id="2_i4w2o"]
@@ -9,6 +9,67 @@
 resource_local_to_scene = true
 size = Vector2(13, 54)
 
+[sub_resource type="Animation" id="Animation_elm5i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.490438]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.657326, 0.633515)]
+}
+
+[sub_resource type="Animation" id="Animation_1qmmw"]
+resource_name = "rotation"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.137215, 0.266667, 0.420948, 0.583746),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.490438, 1.14319, 1.1812, 2.4487, 4.89739, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.137215, 0.267453, 0.418622, 0.588397),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.657326, 0.633515), Vector2(0.454579, 0.408049), Vector2(0.293352, 0.271565), Vector2(0.140063, 0.155437)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kyp3s"]
+_data = {
+&"RESET": SubResource("Animation_elm5i"),
+&"rotation": SubResource("Animation_1qmmw")
+}
+
 [node name="spear" instance=ExtResource("1_y4joh")]
 script = ExtResource("2_t4qxn")
 itemRes = ExtResource("3_t4qxn")
@@ -17,7 +78,11 @@ itemRes = ExtResource("3_t4qxn")
 shape = SubResource("RectangleShape2D_t4qxn")
 
 [node name="Sprite2D" parent="." index="1"]
-position = Vector2(0, 0)
-rotation = 0.359538
-scale = Vector2(0.91996, 0.858863)
+rotation = 0.490438
+scale = Vector2(0.657326, 0.633515)
 texture = ExtResource("2_i4w2o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_kyp3s")
+}

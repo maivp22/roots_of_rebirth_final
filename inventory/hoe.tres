@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://dve82d2qhboml"]
 
-[ext_resource type="Script" uid="uid://brea4m34wdj3b" path="res://script/inventoryItem.gd" id="1_j7ibj"]
+[ext_resource type="Script" uid="uid://brea4m34wdj3b" path="res://inventory/inventoryItem.gd" id="1_j7ibj"]
 [ext_resource type="Texture2D" uid="uid://c5wq0ds652hkm" path="res://items/hoe.png" id="2_vim3e"]
 
 [resource]

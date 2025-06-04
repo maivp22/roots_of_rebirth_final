@@ -1,37 +1,14 @@
-extends Button
+extends Panel
 
 @onready var backgroundSprite: Sprite2D = $background
-@onready var container: CenterContainer = $CenterContainer
-
-@onready var inventory = preload("res://inventory/playerInventory.tres")
-
-var itemStackGui
-var index: int
-
-func insert(isg: ItemStackGui):
-	itemStackGui = isg
-	backgroundSprite.frame = 1
-	container.add_child(itemStackGui)
-	
-	if !itemStackGui.inventorySlot || inventory.slots[index] == itemStackGui.inventorySlot:
-		return
-	
-	inventory.insertSlot(index, itemStackGui.inventorySlot)
+@onready var itemSprite: Sprite2D = $CenterContainer/item
 
 
-func takeItem():
-	var item = itemStackGui
-	
-	inventory.removeSlot(itemStackGui.inventorySlot)
-	
-	return item
-
-
-func isEmpty():
-	return !itemStackGui
-
-func clear():
-	if itemStackGui:
-		container.remove_child(itemStackGui)
-		itemStackGui = null
-	backgroundSprite.frame = 0
+func update(item: InventoryItem):
+	if !item:
+		backgroundSprite.frame = 0
+		itemSprite.visible = false
+	else:
+		backgroundSprite.frame = 1
+		itemSprite.visible = true
+		itemSprite.texture = item.texture

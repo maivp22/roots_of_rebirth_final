@@ -1,11 +1,13 @@
 extends CanvasLayer
 
-@onready var inventory = $InventoryGui
+@onready var inventory = $InventoyGui
+
+func _ready() -> void:
+	inventory.close()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_inventory"):
-		toggle_inventory()
-
-func toggle_inventory():
-	inventory.visible = not inventory.visible
-	get_tree().paused = inventory.visible
+		if inventory.isOpen:
+			inventory.close()
+		else:
+			inventory.open()
