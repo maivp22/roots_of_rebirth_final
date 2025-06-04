@@ -13,15 +13,15 @@ func _ready() -> void:
 	update()
 
 func update():
-	for i in range(min(inventory.items.size(), slots.size())):
-		slots[i].update(inventory.items[i])
+	for i in range(min(inventory.slots.size(), slots.size())):
+		slots[i].update(inventory.slots[i])
 
 func open():
 	visible = true
 	isOpen = true
-	opened.emit()
+	emit_signal("opened")
 
 func close():
 	visible = false
 	isOpen = false
-	closed.emit()
+	emit_signal("closed")
